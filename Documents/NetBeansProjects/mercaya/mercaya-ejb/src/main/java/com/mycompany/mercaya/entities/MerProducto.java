@@ -37,16 +37,17 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "MerProducto.findByProdFecvenc", query = "SELECT m FROM MerProducto m WHERE m.prodFecvenc = :prodFecvenc")})
 public class MerProducto implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "prod_nombre")
+    private Serializable prodNombre;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "prod_codigo")
     private Integer prodCodigo;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "prod_nombre")
-    private Serializable prodNombre;
     @Column(name = "prod_precio")
     private BigInteger prodPrecio;
     @Column(name = "prod_fecelab")
@@ -143,5 +144,9 @@ public class MerProducto implements Serializable {
     public String toString() {
         return "com.mycompany.mercaya.entities.MerProducto[ prodCodigo=" + prodCodigo + " ]";
     }
+
+  
+
+ 
     
 }
