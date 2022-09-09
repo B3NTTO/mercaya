@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
  * @author rguamantica
  */
 @Entity
-@Table(name = "mer_producto")
+@Table(name = "mer_producto",schema="rguamantica")
 @NamedQueries({
     @NamedQuery(name = "MerProducto.findAll", query = "SELECT m FROM MerProducto m"),
     @NamedQuery(name = "MerProducto.findByProdCodigo", query = "SELECT m FROM MerProducto m WHERE m.prodCodigo = :prodCodigo"),
@@ -40,7 +40,7 @@ public class MerProducto implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "prod_nombre")
-    private Serializable prodNombre;
+    private String prodNombre;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,7 +67,7 @@ public class MerProducto implements Serializable {
         this.prodCodigo = prodCodigo;
     }
 
-    public MerProducto(Integer prodCodigo, Serializable prodNombre) {
+    public MerProducto(Integer prodCodigo, String prodNombre) {
         this.prodCodigo = prodCodigo;
         this.prodNombre = prodNombre;
     }
@@ -84,7 +84,7 @@ public class MerProducto implements Serializable {
         return prodNombre;
     }
 
-    public void setProdNombre(Serializable prodNombre) {
+    public void setProdNombre(String prodNombre) {
         this.prodNombre = prodNombre;
     }
 
@@ -145,8 +145,7 @@ public class MerProducto implements Serializable {
         return "com.mycompany.mercaya.entities.MerProducto[ prodCodigo=" + prodCodigo + " ]";
     }
 
-  
-
+ 
  
     
 }
