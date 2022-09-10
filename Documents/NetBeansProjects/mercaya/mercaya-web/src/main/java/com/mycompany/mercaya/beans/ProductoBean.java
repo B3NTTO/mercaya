@@ -4,16 +4,19 @@
  */
 package com.mycompany.mercaya.beans;
 
+import com.mycompany.mercaya.controllers.MerCategoriaFacade;
 import com.mycompany.mercaya.controllers.MerProductoFacade;
 import com.mycompany.mercaya.util.AbstractManagedBean;
 
 import com.mycompany.mercaya.entities.MerProducto;
+import com.mycompany.mercaya.entities.MerCategoria;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import org.primefaces.event.SelectEvent;
 
@@ -28,15 +31,43 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
     private MerProducto producto; // Guardar o Actualizar
     private MerProducto productoSel; //Selecccionar el producto desde la tabla
     private List<MerProducto> listaProductos; //Desplegar los prodcutos en la tabla
+    private List<SelectItem> listaCategorias;
 
+    public Integer getIdCat() {
+        return idCat;
+    }
+
+    public void setIdCat(Integer idCat) {
+        this.idCat = idCat;
+    }
+    private Integer idCat;
+    
     @Inject //Luego del constructor
     private MerProductoFacade adminProducto;
 
+    @Inject
+    private MerCategoriaFacade adminCategoria;
+    
     public ProductoBean() {
         this.producto = new MerProducto(); //Encerando un registro de la tabla
         this.listaProductos = new ArrayList<>(); //Encerando la lista
+        this.listaCategorias = new ArrayList<>();
     }
 
+    public List<SelectItem> getListaCategorias() {
+        return listaCategorias;
+    }
+
+    public void setListaCategorias(List<SelectItem> listaCategorias) {
+        this.listaCategorias = listaCategorias;
+    }
+
+    private void cargarCategorias() {
+        adminCategoria.ConsultarTodos().forEach(cat -> this.listaCategorias
+                .add(new SelectItem(cat.getCateCodigo(), cat.getCateNombre())));
+    }
+    
+    
     public MerProducto getProducto() {
         return producto;
     }
@@ -140,6 +171,7 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
      */
     @PostConstruct
     public void inicializar() {
+        cargarCategorias();
         cargarProductos();
     }
 

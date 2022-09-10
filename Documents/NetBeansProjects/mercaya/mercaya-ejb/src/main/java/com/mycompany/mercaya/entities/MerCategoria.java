@@ -22,7 +22,7 @@ import javax.persistence.Table;
  * @author rguamantica
  */
 @Entity
-@Table(name = "mer_categoria")
+@Table(name = "mer_categoria", schema="rguamantica")
 @NamedQueries({
     @NamedQuery(name = "MerCategoria.findAll", query = "SELECT m FROM MerCategoria m"),
     @NamedQuery(name = "MerCategoria.findByCateCodigo", query = "SELECT m FROM MerCategoria m WHERE m.cateCodigo = :cateCodigo"),
@@ -37,9 +37,9 @@ public class MerCategoria implements Serializable {
     @Column(name = "cate_codigo")
     private Integer cateCodigo;
     @Column(name = "cate_nombre")
-    private Serializable cateNombre;
+    private String cateNombre;
     @Column(name = "cate_descrip")
-    private Serializable cateDescrip;
+    private String cateDescrip;
     @OneToMany(mappedBy = "cateCodigo")
     private List<MerProducto> merProductoList;
 
@@ -58,19 +58,19 @@ public class MerCategoria implements Serializable {
         this.cateCodigo = cateCodigo;
     }
 
-    public Serializable getCateNombre() {
+    public String getCateNombre() {
         return cateNombre;
     }
 
-    public void setCateNombre(Serializable cateNombre) {
+    public void setCateNombre(String cateNombre) {
         this.cateNombre = cateNombre;
     }
 
-    public Serializable getCateDescrip() {
+    public String getCateDescrip() {
         return cateDescrip;
     }
 
-    public void setCateDescrip(Serializable cateDescrip) {
+    public void setCateDescrip(String cateDescrip) {
         this.cateDescrip = cateDescrip;
     }
 

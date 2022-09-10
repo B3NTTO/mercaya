@@ -5,7 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pe="http://primefaces.org/ui/extensions"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/WEB-INF/templates/template.xhtml">
+                template="/WEB-INF/templates/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="contenido">
         <p:growl id="menGen"/>
         <p:toolbar>
@@ -28,6 +29,12 @@
             <p:inputText id="txtNomProd" value="#{productoBean.producto.prodNombre}" required="true" maxlength="100"/>
             <p:outputLabel for="txaPreProd" value="Precio"/>
             <p:inputTextarea id="txaPreProd" value="#{productoBean.producto.prodPrecio}" required="true" maxlength="100"/>
+            
+            <p:selectOneMenu id="selEstPlan" value="#{productoBean.idCat}" required="true">                
+                <f:selectItem itemLabel="Seleccione una opción" itemValue="0" noSelectionOption="true"/>
+                <f:selectItems value="#{productoBean.listaCategorias}"/>
+            </p:selectOneMenu>
+            
         </p:panelGrid>
         <br/>
         <p:dataTable  id="datTabCar" value="#{productoBean.listaProductos}" var="pro" selectionMode="single"
@@ -39,6 +46,9 @@
              <p:column headerText="Precio">
                  <h:outputText value="#{pro.prodPrecio}"/>
             </p:column>
+                    <p:column headerText="Categoría">
+                        <h:outputText value="#{pro.cateCodigo.cateNombre}"/>
+                    </p:column>            
         </p:dataTable>
         
         <p:dialog widgetVar="diaConEli" header="Confirmación Eliminación" width="400px">
