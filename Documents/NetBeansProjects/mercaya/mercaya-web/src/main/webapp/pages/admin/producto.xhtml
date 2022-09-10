@@ -28,12 +28,13 @@
             <p:outputLabel for="txtNomProd" value="Nombre:"/>
             <p:inputText id="txtNomProd" value="#{productoBean.producto.prodNombre}" required="true" maxlength="100"/>
             <p:outputLabel for="txaPreProd" value="Precio"/>
-            <p:inputTextarea id="txaPreProd" value="#{productoBean.producto.prodPrecio}" required="true" maxlength="100"/>
-            
-            <p:selectOneMenu id="selEstPlan" value="#{productoBean.idCat}" required="true">                
+            <p:inputText id="txaPreProd" value="#{productoBean.producto.prodPrecio}" required="true" maxlength="100"/>
+            <p:selectOneMenu id="selCatProd" value="#{productoBean.idCat}" required="true">
                 <f:selectItem itemLabel="Seleccione una opción" itemValue="0" noSelectionOption="true"/>
                 <f:selectItems value="#{productoBean.listaCategorias}"/>
-            </p:selectOneMenu>
+            </p:selectOneMenu>            
+
+
             
         </p:panelGrid>
         <br/>

@@ -98,6 +98,8 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
      */
     public void guardar() {
         try {
+            MerCategoria cateTmp = new MerCategoria(idCat);
+            this.producto.setCateCodigo(cateTmp);
             if (producto.getProdCodigo()!= null) {
                 //Actualizar
                 adminProducto.actualizar(producto);
