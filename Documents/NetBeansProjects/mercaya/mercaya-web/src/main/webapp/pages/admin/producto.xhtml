@@ -27,12 +27,12 @@
             <p:outputLabel for="txtNomProd" value="Nombre:"/>
             <p:inputText id="txtNomProd" value="#{productoBean.producto.prodNombre}" required="true" maxlength="100"/>
             <p:outputLabel for="txaPreProd" value="Precio"/>
-            <p:inputTextarea id="txaPreProd" value="#{productoBean.producto.prodPrecio}" maxlength="300" rows="4"/>
+            <p:inputTextarea id="txaPreProd" value="#{productoBean.producto.prodPrecio}" required="true" maxlength="100"/>
         </p:panelGrid>
         <br/>
         <p:dataTable  id="datTabCar" value="#{productoBean.listaProductos}" var="pro" selectionMode="single"
                       rowKey="#{pro.prodCodigo}" paginator="true" rows="10">
-            <p:ajax event="rowSelect" listener="#{productoBean.listaProductos }"/>
+            <p:ajax event="rowSelect" listener="#{productoBean.seleccionarFila}"/>
             <p:column headerText="Nombre">
                 <h:outputText value="#{pro.prodNombre}"/>
             </p:column>

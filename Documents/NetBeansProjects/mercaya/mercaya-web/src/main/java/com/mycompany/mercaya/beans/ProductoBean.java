@@ -26,8 +26,8 @@ import org.primefaces.event.SelectEvent;
 public class ProductoBean extends AbstractManagedBean implements Serializable{
     
     private MerProducto producto; // Guardar o Actualizar
-    private MerProducto productoSel; //Selecccionar el cargo desde la tabla
-    private List<MerProducto> listaProductos; //Desplegar los cargos en la tabla
+    private MerProducto productoSel; //Selecccionar el producto desde la tabla
+    private List<MerProducto> listaProductos; //Desplegar los prodcutos en la tabla
 
     @Inject //Luego del constructor
     private MerProductoFacade adminProducto;
@@ -83,14 +83,14 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
         }
     }    
     /**
-     * Método para cargar los cargos
+     * Método para cargar los productos
      */
     private void cargarProductos() {
         this.listaProductos = adminProducto.ConsultarTodos();
     }
 
  /**
-     * Método para seleccionar un cargo
+     * Método para seleccionar un producto
      *
      * @param ev
      */
@@ -99,18 +99,18 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
     }
 
     /**
-     * Método para cargar el cargo seleccionado
+     * Método para cargar el producto seleccionado
      */
     public void editar() {
         if (productoSel != null) {
             this.producto = productoSel;
         } else {
-            anadirError("Se debe seleccionar un cargo");
+            anadirError("Se debe seleccionar un producto");
         }
     }
 
     /**
-     * Método para eliminar un cargo
+     * Método para eliminar un producto
      */
     public void eliminar() {
         try {
@@ -119,7 +119,7 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
                 cargarProductos();
                 resetearFormulario();
             } else {
-                anadirError("Se debe seleccionar un cargo");
+                anadirError("Se debe seleccionar un producto");
             }
         } catch (Exception e) {
             anadirError("Error al eliminar:" + e.getMessage());
@@ -138,10 +138,10 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
     /**
      * Método para inicializar el formulario
      */
-    //@PostConstruct
-    //public void inicializar() {
-   //     cargarProductos();
-    //}
+    @PostConstruct
+    public void inicializar() {
+        cargarProductos();
+    }
 
 
     
