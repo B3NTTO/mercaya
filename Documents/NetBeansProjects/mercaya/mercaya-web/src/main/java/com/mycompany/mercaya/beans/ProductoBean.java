@@ -63,6 +63,7 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
     }
 
     private void cargarCategorias() {
+        this.listaCategorias.clear();
         adminCategoria.ConsultarTodos().forEach(cat -> this.listaCategorias
                 .add(new SelectItem(cat.getCateCodigo(), cat.getCateNombre())));
     }
@@ -137,6 +138,8 @@ public class ProductoBean extends AbstractManagedBean implements Serializable{
     public void editar() {
         if (productoSel != null) {
             this.producto = productoSel;
+            this.idCat = producto.getCateCodigo().getCateCodigo();
+            cargarCategorias();
         } else {
             anadirError("Se debe seleccionar un producto");
         }
