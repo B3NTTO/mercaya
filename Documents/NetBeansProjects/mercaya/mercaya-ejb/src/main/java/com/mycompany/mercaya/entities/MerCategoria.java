@@ -24,8 +24,10 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author rguamantica
  */
-@XmlRootElement
+
 @Entity
+
+@XmlRootElement
 @Table(name = "mer_categoria", schema="rguamantica")
 @NamedQueries({
     @NamedQuery(name = "MerCategoria.findAll", query = "SELECT m FROM MerCategoria m"),

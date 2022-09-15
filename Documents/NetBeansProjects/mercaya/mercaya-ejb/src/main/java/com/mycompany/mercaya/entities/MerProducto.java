@@ -7,6 +7,7 @@ package com.mycompany.mercaya.entities;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,9 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author rguamantica
  */
+@XmlRootElement
 @Entity
 
-@XmlRootElement
 @Table(name = "mer_producto",schema="rguamantica")
 @NamedQueries({
     @NamedQuery(name = "MerProducto.findAll", query = "SELECT m FROM MerProducto m"),
@@ -68,7 +69,7 @@ public class MerProducto implements Serializable {
     @JoinColumn(name = "cate_codigo", referencedColumnName = "cate_codigo")
 
      //@XmlTransient
-
+    @JsonbTransient //REST
     @ManyToOne
     private MerCategoria cateCodigo;
     
