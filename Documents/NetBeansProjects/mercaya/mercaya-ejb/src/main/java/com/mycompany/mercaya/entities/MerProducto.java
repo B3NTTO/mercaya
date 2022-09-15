@@ -17,16 +17,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 
 /**
  *
  * @author rguamantica
  */
 @Entity
+
+@XmlRootElement
 @Table(name = "mer_producto",schema="rguamantica")
 @NamedQueries({
     @NamedQuery(name = "MerProducto.findAll", query = "SELECT m FROM MerProducto m"),
@@ -56,9 +62,16 @@ public class MerProducto implements Serializable {
     @Column(name = "prod_fecvenc")
     @Temporal(TemporalType.DATE)
     private Date prodFecvenc;
+    
+   
+    
     @JoinColumn(name = "cate_codigo", referencedColumnName = "cate_codigo")
+
+     //@XmlTransient
+
     @ManyToOne
     private MerCategoria cateCodigo;
+    
 
     public MerProducto() {
     }
@@ -80,7 +93,7 @@ public class MerProducto implements Serializable {
         this.prodCodigo = prodCodigo;
     }
 
-    public Serializable getProdNombre() {
+    public String getProdNombre() {
         return prodNombre;
     }
 

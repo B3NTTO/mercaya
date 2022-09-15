@@ -6,6 +6,8 @@ package com.mycompany.mercaya.controllers;
 
 import com.mycompany.mercaya.entities.MerProducto;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,6 +15,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author rguamantica
  */
+@TransactionManagement(TransactionManagementType.CONTAINER) //Tx Automático, por defecto
 @Stateless
 public class MerProductoFacade extends AbstractFacade<MerProducto> {
 
