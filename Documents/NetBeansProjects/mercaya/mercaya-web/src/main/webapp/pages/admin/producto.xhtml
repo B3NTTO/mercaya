@@ -34,6 +34,11 @@
                 <f:selectItems value="#{productoBean.listaCategorias}"/>
             </p:selectOneMenu>            
 
+            <p:selectOneMenu id="selNomProd" value="" required="true"
+                             converter="#{convProducto}">
+                <f:selectItem itemLabel="Seleccione una opción" itemValue="#{null}" noSelectionOption="true"/>
+                <f:selectItems value="#{productoBean.listaProductos}" var="pro" itemValue="#{pro}" itemLabel="#{pro.prodNombre}"/>
+            </p:selectOneMenu>            
 
             
         </p:panelGrid>
